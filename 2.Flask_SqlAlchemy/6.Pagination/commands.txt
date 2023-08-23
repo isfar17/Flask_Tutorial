@@ -1,0 +1,48 @@
+e:\Flask\Flask_Tutorial\2.Flask_SqlAlchemy\6.Pagination>flask shell
+Python 3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)] on win32
+App: main
+Instance: E:\Flask\Flask_Tutorial\2.Flask_SqlAlchemy\6.Pagination\instance
+>>> from main import *
+>>> db.create_all()
+>>> exit()
+
+problem while running the code:
+
+ll=[i for i in range(100)]
+
+for i in ll:
+    title=f"Title number {i}"
+    content=f"Content number {i}"
+    data=Blog(title=title,content=content)
+    db.session.add(data)
+    db.session.commit()
+    print(title,content)
+
+RuntimeError: Working outside of application context.
+
+This typically means that you attempted to use functionality that needed
+the current application. To solve this, set up an application context
+with app.app_context(). See the documentation for more information.
+
+Solution:
+
+ll=[i for i in range(100)]
+
+for i in ll:
+    with app.app_context():
+        title=f"Title number {i}"
+        content=f"Content number {i}"
+        data=Blog(title=title,content=content)
+        db.session.add(data)
+        db.session.commit()
+        print(title,content)
+
+OUTPUT:
+Title number 0 Content number 0
+Title number 1 Content number 1
+Title number 2 Content number 2
+Title number 3 Content number 3
+Title number 4 Content number 4
+Title number 5 Content number 5
+Title number 6 Content number 6
+...

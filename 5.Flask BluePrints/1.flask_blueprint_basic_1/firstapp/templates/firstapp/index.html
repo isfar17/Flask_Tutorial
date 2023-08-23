@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firstapp/index</title>
+</head>
+<body>
+   hi this is index 
+<!-- 
+   if we move to blueprints we now have made apps separate. so now we cant just
+   use url_for('new') because url_for does not know which apps function we are calling.
+   so we have to use appname.function now -->
+   <a href="{{url_for('firstapp.new')}}">Go to New</a>
+</body>
+</html>

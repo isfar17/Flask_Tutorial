@@ -1,0 +1,20 @@
+e:\Flask\Flask_Tutorial\10.Flask with MySQL>C:/Users/isfar/AppData/Local/Programs/Python/Python311/python.exe "e:/Flask/Flask_Tutorial/10.Flask with MySQL/app.py"
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 462-111-858
+Added user Name 0 -> email0@gmail.com
+Added user Name 1 -> email1@gmail.com
+Added user Name 2 -> email2@gmail.com
+Added user Name 3 -> email3@gmail.com
+Added user Name 4 -> email4@gmail.com
+Added user Name 5 -> email5@gmail.com
+Added user Name 6 -> email6@gmail.com
+Added user Name 7 -> email7@gmail.com
+Added user Name 8 -> email8@gmail.com
+Added user Name 9 -> email9@gmail.com
+App Finished putting data into databse

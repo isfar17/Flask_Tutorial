@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title  %}HomePage{% endblock title  %}
+
+{% block body %}
+{% for message in get_flashed_messages() %}
+{{message}}
+    
+{% endfor %}
+    <form method="post">
+        {{form.hidden_tag()}}
+        {{form.name.label}} {{form.name}}<br>
+        {{form.email.label}} {{form.email}}<br>
+        {{form.choice.label}} {{form.choice}}<br>
+        {{form.submit.label}} {{form.submit}}<br>
+    </form>
+{% endblock body %}

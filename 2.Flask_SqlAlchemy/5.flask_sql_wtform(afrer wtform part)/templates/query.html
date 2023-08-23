@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Show Data
+{% endblock title %}
+
+{% block body %}
+
+<br>
+<br>
+<br>
+
+    <h1> Your Input Data are:</h1><br>
+        {{query.name}}<br>
+        {{query.email}}<br>
+        {{query.choice}}<br>
+        <h1><a href="{{url_for('index')}}">Go to home</a></h1>
+
+
+{% endblock body %}

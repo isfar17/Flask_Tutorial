@@ -1,0 +1,12 @@
+# e:\Flask\Flask_Tutorial\2.Flask_SqlAlchemy\1.flask_sql_1>set FLASK_APP=main.py
+# e:\Flask\Flask_Tutorial\2.Flask_SqlAlchemy\1.flask_sql_1>flask shell
+# Python 3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)] on win32
+# App: main
+# Instance: E:\Flask\Flask_Tutorial\2.Flask_SqlAlchemy\1.flask_sql_1\instance
+# >>> from main import *
+# >>> db.create_all()    
+# >>> user1=User(name="Jubayer")
+# >>> db.session.add(user1)
+# >>> db.session.commit()
+# >>> User.query.all()
+# [1 -> Jubayer]

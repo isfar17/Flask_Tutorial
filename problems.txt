@@ -1,0 +1,36 @@
+1.child_namesqlalchemy.exc.ArgumentError: Error creating backref 'base' on relationship 'Base.childs': property of that name exists on mapper 'Mapper[Child(child)]'
+
+--->This error happens when names of any class variable matches the attribute of or the name of other calsses variable or attribute
+so just change the names or make sure that in no ways, two classes name,attribute does not match
+
+2.Even after creating all the tables this erros shows:
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: base
+
+--->Means you are running the app in the wrong directory.change the terminal directory to where you are writing the code
+it should work now
+
+3.AttributeError: 'Child' object has no attribute 'name'
+
+--->This is because i wrote the name of the variable wrong at any place,debug to fix it.
+
+4.werkzeug.routing.exceptions.BuildError: Could not build url for endpoint 'functioname'. Did you mean 'index' instead?
+
+--->this happens because of url_function not redirecting properly to the corresponding function
+write the url redirecting clearly and carefully
+
+5.sqlalchemy.exc.NoReferencedTableError: Foreign key associated with column 'pet foods.liked_by' could not find table 'pet' 
+with which to generate a foreign key to target column 'pet_id'
+
+-->This is very simple.sqlalchemy is sensitive and any class variable, object between classes matching would return error while
+creating relationship between them. so make sure two relationship making table does not have same name variable or anything anyhow
+
+6.sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users_table
+
+-->This happens because either the table is not created or the directory of the running program is wrong.
+so go the working directory and then run the program. this will work mostly.
+
+7. RuntimeError: No application found. 
+
+--> set the FLASK_APP variable to the app.py or the flask file.this often happens while running migrations and flask shell command
+
+#other errors are solved inside with the solution given. go and check there what might go wrong

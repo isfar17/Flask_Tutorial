@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    Hello User!
+
+    {% if current_user.is_authenticated %}
+    <a href="{{url_for('logout')}}" target="_blank" rel="noopener noreferrer">Logout</a>
+        
+    {% endif %}
+{% endblock body %}

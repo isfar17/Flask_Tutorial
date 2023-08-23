@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    
+<!-- We can put css folder directory to any directory here using url_for -->
+
+
+<img src="{{url_for('static',filename='sample.png')}}" width="500px" height="300px" alt="" srcset="">
+
+{% endblock body %}

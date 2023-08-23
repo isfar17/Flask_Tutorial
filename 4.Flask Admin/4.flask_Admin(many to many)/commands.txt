@@ -1,0 +1,89 @@
+
+E:\Flask\new\flask_sql_3(many to many)>flask shell
+Python 3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.11934 64 bit (AMD64)] on win32
+App: app
+Instance: E:\Flask\new\flask_sql_3(many to many)\instance
+>>> from app import *
+>>> db.create_all()
+>>> user1=    blogs=db.relationship("Blog",back_populates="users")  
+>>> user1=User(name="Anthony")
+>>> user2=User(name="Jubayer")
+>>> user3=User(name="Rahmat")
+>>> user4=User(name="Kamal")
+>>> db.session.add_all([user1,user2,user3])
+>>> db.session.commit()
+>>> db.session.add(user4)
+>>> db.session.commit()
+>>> com1=Comment(comment="first")
+>>> com2=Comment(comment="second")
+>>> com3=Comment(comment="third")
+>>> com4=Comment(comment="fourth")
+>>> db.session.add_all([com1,com2,com3,com4])
+>>> db.session.commit()
+>>> user1.comments.append(com1)
+>>> user1.comments.append(com2)
+>>> db.session.commit()
+>>> user1.comments
+[first, second]
+>>> com3.users.append(user3)
+>>> com3.users.append(user2)
+>>> db.session.commit()
+>>> for comment in user1.comments:
+...     print(comment.comment)
+...
+first
+second
+
+#Migration
+
+E:\Flask\new\flask_sql_3(many to many)>flask db init
+    Creating directory 'E:\\Flask\\new\\flask_sql_3(many to many)\\migrations' ...  done
+    Creating directory 'E:\\Flask\\new\\flask_sql_3(many to many)\\migrations\\versions' ...  done
+    Generating E:\Flask\new\flask_sql_3(many to many)\migrations\alembic.ini ...  done
+    Generating E:\Flask\new\flask_sql_3(many to many)\migrations\env.py ...  done
+    Generating E:\Flask\new\flask_sql_3(many to many)\migrations\README ...  done
+    Generating E:\Flask\new\flask_sql_3(many to many)\migrations\script.py.mako ...  done
+    Please edit configuration/connection/logging settings in 'E:\\Flask\\new\\flask_sql_3(many to many)\\migrations\\alembic.ini' before proceeding.
+
+E:\Flask\new\flask_sql_3(many to many)>flask db migrate -m "created relation between user and blog"
+    INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+    INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+    INFO  [alembic.autogenerate.compare] Detected added table 'blogs'
+    INFO  [alembic.autogenerate.compare] Detected added table 'user and blogs'
+    INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+
+    INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+    INFO  [alembic.autogenerate.compare] Detected added table 'blogs'
+    INFO  [alembic.autogenerate.compare] Detected added table 'user and blogs'
+    INFO  [alembic.autogenerate.compare] Detected removed table 'blog'
+    Generating E:\Flask\new\flask_sql_3(many to many)\migrations\versions\ed28c912833b_created_relation_between_user_and_blog.py ...  done
+
+E:\Flask\new\flask_sql_3(many to many)>flask db upgrade
+    INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+    INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+    INFO  [alembic.runtime.migration] Running upgrade  -> ed28c912833b, created relation between user and blog
+
+#another update after error 
+
+E:\Flask\new\flask_sql_3(many to many)>flask db migrate -m "created relation between user and blog"
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+INFO  [alembic.env] No changes in schema detected.
+
+E:\Flask\new\flask_sql_3(many to many)>flask db upgrade
+INFO  [alembic.runtime.migration] Context impl SQLiteImpl.
+INFO  [alembic.runtime.migration] Will assume non-transactional DDL.
+
+E:\Flask\new\flask_sql_3(many to many)>flask shell
+Python 3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)] on win32
+App: app
+Instance: E:\Flask\new\flask_sql_3(many to many)\instance
+>>> from app import *
+>>> blog1=Blog(title="title",content="content")
+>>> blog2=Blog(title="title2",content="content2",user_id=2) 
+>>> db.session.add_all([blog1,blog2])
+>>> db.session.commit()              
+>>> blog1=Blog.query.filter_by(id=1).first()
+>>> blog1.user_id=1                            
+>>> db.session.commit()
+>>>

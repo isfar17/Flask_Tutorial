@@ -1,0 +1,14 @@
+
+    This is the body
+    hi this is Registration route
+    <br>
+    <div class="container">
+    <!-- the url_for()  recognises the function to be called and gets to it. it will return whatever inside it is -->
+        <form action="{{url_for('auth.registration_process')}}" method="POST"> 
+            <!--the url for this file is set to registration_process where data will be processed to make a user-->
+            <input type="text" name="name" >
+            <input type="password" name="password" >
+            <button type="submit">Submit</button>
+
+        </form>
+    </div>

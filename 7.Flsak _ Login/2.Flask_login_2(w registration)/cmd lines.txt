@@ -1,0 +1,10 @@
+127.0.0.1 - - [21/Aug/2023 00:02:14] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [21/Aug/2023 00:02:16] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [21/Aug/2023 00:03:17] "GET /registration HTTP/1.1" 200 -
+127.0.0.1 - - [21/Aug/2023 00:03:37] "POST /registration_process HTTP/1.1" 302 -
+127.0.0.1 - - [21/Aug/2023 00:03:37] "GET /login HTTP/1.1" 200 -
+127.0.0.1 - - [21/Aug/2023 00:04:37] "POST /login_process HTTP/1.1" 200 -
+e:\Flask\Flask_Tutorial\7.Flsak _ Login\2.Flask_login_2(w registration)\app.py:39: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  return User.query.get(user_id)
+127.0.0.1 - - [21/Aug/2023 00:05:13] "GET /logout HTTP/1.1" 302 -
+127.0.0.1 - - [21/Aug/2023 00:05:13] "GET / HTTP/1.1" 200 -

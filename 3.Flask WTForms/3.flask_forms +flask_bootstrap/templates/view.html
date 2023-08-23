@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    View Page
+{% endblock title %}
+
+{% block body %}
+    <div class="container">
+        {% for message in get_flashed_messages()  %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+        <br>
+        {{session["name"]}} <br>   
+        {{session["age"]}}<br>
+        {{session["text"]}}<br>
+        {{session["bool_value"]}}<br>
+        {{session["choice"]}}<br>
+        {{session["select"]}}<br>
+    </div>
+{% endblock body %}

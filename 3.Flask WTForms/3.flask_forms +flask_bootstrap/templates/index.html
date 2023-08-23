@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %} 
+<!--boostrap module right now in 2023 supports til bootstrap4.
+with boostrap initialized, we can use this route to imoprt the boostrap form and use it directly 
+to make our side look prettier. or else we can use renderform(form) which is used later on. if we dont want
+bootstap just delete the line and use normal form tag and variables-->
+
+{% block title  %}HomePage{% endblock title  %}
+
+{% block body %}
+<br>
+<br>
+    <div class="container">
+        <form method="post">
+            <!--Will show basic html structure of form-->
+            <div class="form-group">
+                {{ render_form(form) }} 
+                <!-- this will directly render the form with bootstrap, modern modified.another way 
+                    of sending data but not the best-->
+            </div>
+        </form>
+    </div>
+{% endblock body %}
+
+
+       <!-- Convention one 
+        {{form.hidden_tag()}}
+       {{form.name.label}} {{form.name( class="form-control")}} <br>
+       {{form.text.label}} {{form.text}} <br>
+       {{form.age.label}} {{form.age}} <br>
+       {{form.bool_value.label}} {{form.bool_value}} <br>
+       {{form.choice.label}} {{form.choice}} <br>
+       {{form.select.label}} {{form.select}} <br>
+        {{form.submit}} <br>
+            </div>
+            </div> -->
+            
+            
+
+
+<!-- There is another way of using Forms into python. Like traditional form fileds,i just have to define
+name="formname" into the form name variable.so when i wil submit the data, i no longer have to use
+flask wtf. i have to use[[ request.form.get("name of the filed") ] ]and can access the form data.
+then i can define the action variable using {{url_for('functioname')}} to redirect the form 
+data into the desired functioname
+
+demo:
+       <form action="{{url_for('anyfunc_that_Will process these data')}}" method="post">
+
+        <input type="text" name="name">
+        <button type="submit">Submit</button>
+       </form> -->

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title  %}HomePage{% endblock title  %}
+
+{% block body %}
+    This is the body
+    hi this is login_page.html file
+        <!-- This pattern recognises the function to be called and gets to it. it will return whatever inside it is -->
+
+        <form action="{{url_for('login_function')}}" method="POST">
+
+            <input type="text" name="name" >
+            <input type="password" name="password" >
+            <button type="submit">Submit</button>
+
+        </form>
+{% endblock body %}

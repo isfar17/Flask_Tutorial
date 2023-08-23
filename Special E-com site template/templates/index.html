@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello World</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+
+  <body style="background-color: rgb(0, 0, 0);">
+
+            <br>
+            <br>
+            </div>
+            <br>
+            <!-- This Design Here can be used as item placement for any ecommerce shop for flask
+            I used card without the image one. so that i can use it to color the border.
+            next their is some modifications done by me in styles to ensure that i can use it
+            later for modification. using flask i can make this as my e commerce app -->
+            <div class="container">
+                <!-- container used to set everything within a good looking position -->
+                <div class="row position-relative" style="justify-content:center;color:rgb(236, 227, 227);background:black">
+           {% for i  in list1 %}
+           <div class="card border-light mb-3" style="width: 25rem;background:rgb(49, 48, 48)">
+            <div class="card-body mb-2">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-3  text-body-secondary">Card subtitle</h6>
+              <p class="card-text">{{i}}.</p>
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+            <br>
+          </div>
+  
+           {% endfor %}
+                </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>

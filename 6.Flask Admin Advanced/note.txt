@@ -1,0 +1,10 @@
+circular import error at __init__ file:
+
+--> Basically here model is dependent on( __init__.py) file. if we try to import 
+any functions into ( __init__.py) file from model, we get the error. because if we 
+see model is dependent on __init__. again if models functions are imported, then they
+will require __init__ file to import again which causes a loop of importing modules functions.
+
+Solve:
+Instead of importing the Class of model.py we import the whole model. by this we dont
+use any functions which are dependent internally. now we can access and use them.

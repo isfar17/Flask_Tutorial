@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title  %}Login{% endblock title  %}
+
+{% block body %}
+    This is the body
+    hi this is Login route
+    <br>
+    <div class="container">
+    <!-- the url_for()  recognises the function to be called and gets to it. it will return whatever inside it is -->
+        <form action="{{url_for('login_process')}}" method="POST">
+<!--the user checking or login process will be done in login function. so the route is set to the function-->
+            <input type="text" name="name" >
+            <input type="password" name="password" >
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock body %}

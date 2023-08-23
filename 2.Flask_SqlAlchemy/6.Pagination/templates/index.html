@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>{% block title %}Base{% endblock title %}</title>
+  </head>
+
+
+  <body>
+    {% block body %}
+<div class="container">
+    <br>
+
+<!-- This card block is taken from boostrap 5 page. so we iterate through query list and with jinja, write the 
+id,title,content one by one. at the end we also added pagination system which is the main purpose of this tutorial
+note that we only will see 5 post here. because we sent through app that paginate will show per_page=5 means 5 posts
+at a time -->
+{% for q in query %}
+    
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{q.id}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{q.title}}</h6>
+          <p class="card-text">{{q.content}}</p>
+        </div>
+      </div>
+      {% endfor %}
+
+ <!-- The pagination reference is taken from boostrap 5. Now since we are using query.paginate() function, we have
+ access to iteration through page numbers. so we are using that query.iter_page() function to use it in pagination
+one thing ensuring noting that WE MUST USE IF ELSE STATEMENT WHILE WRITING PAGINATION SYSTEM. this is because PAGINATION
+would not show every single iteration. it will show couple of the numbers, then some of the middle and some of the last.
+so we must not forget that and use if statment to make sure if there page exists or its just none. without using
+if else statement we will get build_error. because none will be passed in url_for() function which would fail to build
+a route /none and it does not exists.. we used left_edge and right_edge to tell how many numbers to show each side before
+its a none page. then if there is none after 3 numbers, we will show ... dots which have been showed using else statement -->
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            {% for page in query.iter_pages(left_edge=3,right_edge=3)  %}
+                {% if page %}        
+                <li class="page-item"><a class="page-link" href="{{ url_for('index',page_val=page) }}">{{page}}</a></li>
+                {%else%}
+                ...
+            {% endif %}
+            {% endfor %}
+        </ul>
+        {% endblock body %}
+    </nav>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

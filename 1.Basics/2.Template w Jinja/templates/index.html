@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title  %}HomePage{% endblock title  %}
+
+{% block body %}
+    This is the body
+    <h1><a href="{{url_for('new')}}" target="_blank" rel="noopener noreferrer">Go to New to redirect here</a></h1>
+        <!-- This pattern recognises the function to be called and gets to it. it will return whatever inside it is -->
+{% endblock body %}

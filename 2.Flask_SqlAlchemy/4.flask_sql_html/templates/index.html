@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} HOMEPAGE {% endblock title %}
+
+{% block body %}
+<div class="container">
+  <form action="{{url_for('view')}}" method="post"> <!--this url_for() will take data into view function-->
+
+    <div class="form-floating mb-3"> <!--taken from bootstrap5 page as a sample-->
+      <input class="form-control" type="name" name="name" aria-label=" input example">
+      
+      <label for="floatingInput">Name</label>
+      </div>                 <!--the name variable of (input tag and text area tag ) will be accessed in python file
+        to fetch data from form. !-->
+      <div class="form-floating">
+        <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="text"></textarea>
+        <label for="floatingTextarea">Text</label>
+      </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <button class="btn btn-primary" type="submit">Button</button>
+    
+    </form>
+    </div>
+{% endblock body %}

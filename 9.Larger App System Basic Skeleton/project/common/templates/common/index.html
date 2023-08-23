@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>This is the common index</h1><br>
+    <h4>Go to <a href="{{url_for('auth.login')}}" target="_blank" rel="noopener noreferrer">Login </a> to login </h4><br><br>
+    <h4>Go to <a href="{{url_for('auth.registration')}}" target="_blank" rel="noopener noreferrer">registration </a> to login </h4><br><br> <!--Redirecting common users to login and registraion route-->
+    {% for q in query %}
+    <ul>
+        <!-- the query list gets here will go through a loop and show the users data one by one-->
+        <li>{{q.id}}</li> 
+        <li>{{q.name}}</li>
+        <li>{{q.password}}</li>
+    </ul>
+    {% endfor %}
+</body>
+</html>

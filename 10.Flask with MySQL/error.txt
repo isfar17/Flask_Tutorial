@@ -1,0 +1,51 @@
+This error might show up:
+
+ModuleNotFoundError: No module named 'MySQLdb'
+
+Solution:
+pip install mysql-connector
+
+pip install mysql-python #this might show up errors like down below
+
+
+This might return error :
+ error: Microsoft Visual C++ 14.0 or greater is required. Get it with "Microsoft C++ Build Tools": https://visualstudio.microsoft.com/visual-cpp-build-tools/
+      [end of output]
+
+ERROR: Could not build wheels for mysql-python, which is required to install pyproject.toml-based projects
+
+
+Ways to solve:
+1.
+
+E:\Flask\Flask_Tutorial>pip install --upgrade setuptools
+Requirement already satisfied: setuptools in c:\users\isfar\appdata\local\programs\python\python311\lib\site-packages (65.5.0)
+Collecting setuptools
+  Using cached setuptools-68.1.2-py3-none-any.whl (805 kB)
+Installing collected packages: setuptools
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 65.5.0
+    Uninstalling setuptools-65.5.0:
+      Successfully uninstalled setuptools-65.5.0
+Successfully installed setuptools-68.1.2
+
+2.
+
+E:\Flask\Flask_Tutorial>pip install mysqlclient
+Collecting mysqlclient
+  Downloading mysqlclient-2.2.0-cp311-cp311-win_amd64.whl (199 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 200.0/200.0 kB 2.0 MB/s eta 0:00:00
+Installing collected packages: mysqlclient
+Successfully installed mysqlclient-2.2.0
+
+3.
+
+E:\Flask\Flask_Tutorial>pip install mysql-connector-python
+Collecting mysql-connector-python
+  Downloading mysql_connector_python-8.1.0-cp311-cp311-win_amd64.whl (10.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.8/10.8 MB 513.0 kB/s eta 0:00:00
+Collecting protobuf<=4.21.12,>=4.21.1 (from mysql-connector-python)
+  Downloading protobuf-4.21.12-cp310-abi3-win_amd64.whl (527 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 527.0/527.0 kB 718.7 kB/s eta 0:00:00
+Installing collected packages: protobuf, mysql-connector-python
+Successfully installed mysql-connector-python-8.1.0 protobuf-4.21.12

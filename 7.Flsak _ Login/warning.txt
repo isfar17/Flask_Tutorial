@@ -1,0 +1,6 @@
+* Detected change in 'E:\\Flask\\Flask_Tutorial\\7.Flsak _ Login\\2.Flask_login_2\\app.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 462-111-858
+E:\Flask\Flask_Tutorial\7.Flsak _ Login\2.Flask_login_2\app.py:39: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  return User.query.get(user_id)

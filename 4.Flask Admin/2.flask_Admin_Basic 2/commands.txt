@@ -1,0 +1,8 @@
+E:\Flask\Flask_Tutorial\4.Flask Admin\2.flask_Admin_Basic 2>flask shell
+Python 3.11.4 (tags/v3.11.4:d2340ef, Jun  7 2023, 05:45:37) [MSC v.1934 64 bit (AMD64)] on win32
+App: app
+Instance: E:\Flask\Flask_Tutorial\4.Flask Admin\2.flask_Admin_Basic 2\instance
+>>> from app import *
+>>> db.create_all()
+>>> db.session.commit()
+>>>
