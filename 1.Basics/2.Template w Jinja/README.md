@@ -88,5 +88,8 @@ Here is the code:
 </html>
 
 ```
-And we will be able to see our page like down below:
+And we will be able to see our page something like down below:
  
+![image](https://github.com/isfar17/Flask_Tutorial/blob/master/1.Basics/2.Template%20w%20Jinja/images/image.jpg)
+
+Don't worry about the blue line and other stuffs. We will learn them in the next tutorial.
