@@ -6,9 +6,6 @@ from wtforms import (StringField,TextAreaField,IntegerField,BooleanField,
                      DateTimeField,SubmitField,RadioField,SelectField)
 #VALIDATORS which will automatically check if given data fulfileld conditions
 from wtforms.validators import DataRequired,Email
-#ADVANCED flask module to look flask form look better with boostrap.
-#if i want traditional and custom defined flask forms, i can cut line 11,13
-from flask_bootstrap import Bootstrap5
 
 app=Flask(__name__)
 
