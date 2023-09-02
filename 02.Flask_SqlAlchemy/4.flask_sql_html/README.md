@@ -121,16 +121,92 @@ def view():
         print(name,text)
 ```
 This is the basic function. Now if we run the app we see this image :
-!(view)[https://github.com/isfar17/Flask_Tutorial/blob/master/02.Flask_SqlAlchemy/4.flask_sql_html/image/form_image.jpg]
+![view](https://github.com/isfar17/Flask_Tutorial/blob/master/02.Flask_SqlAlchemy/4.flask_sql_html/image/form_image.jpg)
 
 If we input data and click submit, we will see these lines in our terminal :
 ```
 wwewew weewewwe
 127.0.0.1 - - [20/Aug/2023 01:10:43] "POST /view HTTP/1.1" 200 -
 ```
+Now only a few things needs to be done. Since we are able to get our data from website, we can now easily send them to database too.
+Inside the view function we modify our code like down below:
+```python
+@app.route("/view",methods=["GET","POST"])
+def view():
+    if request.method=="POST": #when it runs for the first time it returns 0 as false, so the last line will execute
+        
+        name=request.form.get("name")#request takes the data from html form name variable to function
+        text=request.form.get("text")
+        print(name,text)
+        try:
+            entry=Base(name=name,text=text) 
+            db.session.add(entry)
+            db.session.commit()
 
+        except:
+            print(f"{name} is already in use!Try different Name! ")
+            db.session.rollback()
+            return render_template("index.html") #will go to this page if the name provided already exists in database
+        
+        dic={
+            "name":name,
+            "text":text
+            }
+        return render_template("view.html",dic=dic)
+    else:
+        return "403 ERROR"
+```
+Let us devide our code in parts. In the first part, we are trying to add data into database. First we get the data by typing
+```python
+    if request.method=="POST": #when it runs for the first time it returns 0 as false, so the last line will execute
+        
+        name=request.form.get("name")#request takes the data from html form name variable to function
+        text=request.form.get("text")
+```
+Then we put it into the instanc of the databse class:
+```python
+try:
+    entry=Base(name=name,text=text) 
+    db.session.add(entry)
+    db.session.commit()
+```
+Why we are using ``try`` block? Well in the Table, we have defined our name variable as :
+```python
+name=db.Column(db.String(25),nullable=False,unique=True)
+```
+Which means we can't have duplicate, but if we accidently type same name, We get SQLAlchemy Integrity Error. So deal with that error when it
+occurs, we use ``try block``. Now if any error occurs, we tackle it by typing:
+```python
+except:
+    print(f"{name} is already in use!Try different Name! ")
+    db.session.rollback()
+    return render_template("index.html") #will go to this page if the name provided already exists in database
+```
+Print a messge in the console and ``db.session.rollback`` undo everything it tried to do before error occured. Thus database operation remains 
+fine and does not crash. After that we send the user to the ``index.html`` route again to insert data. Now afer running it, if we type the same name 
+twice, we get in the console :
+```
+wwewew weewewwe
+wwewew is already in use!Try different Name!
+127.0.0.1 - - [20/Aug/2023 01:10:43] "POST /view HTTP/1.1" 200 -
+```
+Now this program will or might crash because we have not retured anything, So we will return to a new view where users can see what data he/she inserted in 
+the form. So we take the variables and put it inside a dictionary, and with the ``render_template`` we send it as an arguement in the ``view.html`` file. Now
+we create our file :
+```html+jinja
+{% extends 'base.html' %}
+{% block title %}
+    View Data
+{% endblock title %}
 
-
+{% block body %}
+    <h1>THIS IS A VIEW PAGE</h1>
+    {{dic["name"]}}
+    <br>
+    {{dic["text"]}}
+{% endblock body %}
+```
+Pretty simple. We use jinija block to access the data. That is it. We are good to go.
 
 
 
