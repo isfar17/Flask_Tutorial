@@ -53,7 +53,7 @@ def view():
         except:
             print(f"{name} is already in use!Try different Name! ")
             db.session.rollback()
-            return render_template("index.html") #will go to this page if the name provided already exists in datbase
+            return render_template("index.html") #will go to this page if the name provided already exists in database
         
         dic={
             "name":name,
