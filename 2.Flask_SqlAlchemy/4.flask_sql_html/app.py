@@ -52,8 +52,13 @@ def view():
 
         except:
             print(f"{name} is already in use!Try different Name! ")
+            db.session.rollback()
             return render_template("index.html") #will go to this page if the name provided already exists in datbase
-        dic={"name":name,"text":text}
+        
+        dic={
+            "name":name,
+            "text":text
+            }
         return render_template("view.html",dic=dic)
     else:
         return "403 ERROR"

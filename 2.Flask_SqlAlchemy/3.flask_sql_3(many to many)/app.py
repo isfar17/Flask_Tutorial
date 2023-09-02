@@ -21,7 +21,7 @@ there must be a Table created, where Table class takes 3 arguements or more.
 [variable=db.Table("tablename",(columns with parameters)) and more]
 so we define the class or Other Tables first, then we come up and 
 imclude the columns. the columns takes a column name(which will be shown in the  associate table)
-then the type of data to be stored, then the foreignkey which will link (with column of the table)
+then the type of data to be stored, then the foreignkey which will link (with column of the target table)
 provided in the relationship column on the other class.the foreignkey column elements are:
 in the first part we used users.id means users table's id.
 '''
