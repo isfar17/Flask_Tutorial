@@ -53,6 +53,7 @@ class Modify_Base(ModelView):
 #admin.add_view(ModelView(Classname,session))
 admin.add_view(Modify_Base(Base,db.session))
 admin.add_view(ModelView(Child,db.session))
+
 #------------------Tutorial-------------------------
 ''' So what happend was we used classes to view ther relationship based class like
 one to many relationship in admin panel. we created relationship betwen base and child class
