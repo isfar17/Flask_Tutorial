@@ -90,6 +90,6 @@ Here is the code:
 ```
 And we will be able to see our page something like down below:
  
-![image](https://github.com/isfar17/Flask_Tutorial/blob/master/1.Basics/2.Template%20w%20Jinja/images/image.jpg)
+![image](https://github.com/isfar17/Flask_Tutorial/blob/master/01.Basics/2.Template%20w%20Jinja/images/image.jpg)
 
 
