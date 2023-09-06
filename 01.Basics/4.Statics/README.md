@@ -40,4 +40,4 @@ contains:
 So what happened here? In the first portion of the url_for(), we write the folder name where the file is located. Then in the second part we define where the file
 is or the location of the file.If we run the app, we will a picture like down below:
 
-![image](https://github.com/isfar17/Flask_Tutorial/blob/master/1.Basics/4.Statics/image/static_image.jpg)
+![image](https://github.com/isfar17/Flask_Tutorial/blob/master/01.Basics/4.Statics/image/static_image.jpg)
