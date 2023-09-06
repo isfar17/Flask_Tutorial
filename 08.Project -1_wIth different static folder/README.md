@@ -161,7 +161,10 @@ def contact():
     return render_template("contact.html")
 ```
 
-Now if we run ```main.py``` file again, **we will be able to see a non css/js based basic html website**. Also we will see all the html files in their own urls, but without css,js and images or **in raw html mode**.
+Now if we run ```main.py``` file again, **we will be able to see a non css/js based basic html website**. Also we will see all the html files in their own urls, but without css,js and images or **in raw html mode:**
+
+![raw_view](https://github.com/isfar17/Flask_Tutorial/blob/master/08.Project%20-1_wIth%20different%20static%20folder/image/first_look.jpg)
+
 
 Afer that we have to go inside of the html files downloaded from internet. Let's look inside the ```index.html``` file:
 
@@ -358,28 +361,23 @@ So we take note of this and create some jinja syntax inside ```index.html``` fil
     <head>     ...    </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav"> ... </nav>
-
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav"> (navbar content compressed) </nav>
 
         <!-- Page Header-->
 
 {% block header %}
-              <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">   ... </header>
+              <header class="masthead" style="background-image: url('assets/img/home-bg.jpg')">  (header content compressed) </header>
 {% endblock header %}
 
 
-
 {% block content %}
-        <!-- Main Content--> ... </div>
+        <!-- Main Content-->  (Main block content compressed) </div>
 {% endblock content %}
 
 
+
         <!-- Footer-->
-        <footer class="border-top">
-                   ...
-        </footer>
-
-
+        <footer class="border-top"> (Footer content compressed) </footer>
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -396,7 +394,11 @@ We made sure that the ```head```, ```navbar```, ```footer``` remains same for al
 
 other stuffs
 ```
-Now if we go back and run our application, it will run fine. But its just the basic skeleton of the site. Js, css, assets needs to added too.
+Now if we go back and run our application, it will run fine:
+
+![second](https://github.com/isfar17/Flask_Tutorial/blob/master/08.Project%20-1_wIth%20different%20static%20folder/image/basic_routing.jpg)
+
+Now we can route from one page to another by clicking on the links. But its just the basic skeleton of the site. Js, css, assets needs to added too.
 
 ## 4. Static files adding and a Hectic Journey
 Solution of all the problem related to flask static can be found here :
@@ -409,8 +411,8 @@ our ```views.py``` file. We re-write ```blog``` again :
 blog=Blueprint("blog",__name__,template_folder="templates/blog",static_folder="static",static_url_path="blog/static")
 ```
 
-Here 1. static folder is defined as static, because we used ```static``` named folder in our blog app. without defining ```static_folder``` to static
-and ```static_url_path``` to ```"blog/static"``` flask would search for static directory in project directory, or in other words, in the main directory.
+Here ``static_folder`` is defined as ``static``, because we used ```static``` named folder in our blog app. Without defining ```static_folder``` to ``static``
+and ```static_url_path``` to ```"blog/static"``` flask would search for ``static`` directory in ``project`` directory, or in other words, in the main directory.
 This would return the following error in terminal:
 
 ```
@@ -450,8 +452,11 @@ This :```<script src="js/scripts.js"></script>```
  
 Turned to this: ```<script src="{{url_for('blog.static',filename='js/scripts.js')}}"></script>```
 
-Now if we reload the app, we will see a beautiful nearly completed app.
+Now if we reload the app, we will see a beautiful nearly completed app:
 
+![modified](https://github.com/isfar17/Flask_Tutorial/blob/master/08.Project%20-1_wIth%20different%20static%20folder/image/after_css_js_connection.jpg)
+
+And in terminal we will see results.
 ```
 127.0.0.1 - - [18/Aug/2023 21:51:01] "GET / HTTP/1.1" 200 -
 127.0.0.1 - - [18/Aug/2023 21:51:01] "GET /blog/static/js/scripts.js HTTP/1.1" 304 -
@@ -460,7 +465,7 @@ Now if we reload the app, we will see a beautiful nearly completed app.
 127.0.0.1 - - [18/Aug/2023 21:51:01] "GET /blog/static/assets/favicon.ico HTTP/1.1" 304 -
 ```
 
-Here 304 means it is found. So we successfully connected all the static, templates now.
+Here We are not getting 404 eror, means it is found. So we successfully connected all the static, templates now.
 What's remaining is adding the images in the background.
 
 ## 5. Adding the images to finish 
@@ -480,7 +485,10 @@ We have to change url type. We use as usual ``url_for()`` function inside ``url(
 
 Here VS Code might some erros such as  ``at-rule or selector expected`` or ``) expected`` types errors. But in real case, there is no error. So are good to go. Let's analyze what is happening here. We removed single quotation mark, as it nowdays not neccessary according to the link above. It gives the soltution to not connecting the image problem too. Then as usual, we are telling that the static folder to choose ``blog.static`` and filname is just ``assets/img/all images`` since static is already accessed.
 
-Save everything and the site will run perfectly.
+Save everything and the site will run perfectly:
+
+![final](https://github.com/isfar17/Flask_Tutorial/blob/master/08.Project%20-1_wIth%20different%20static%20folder/image/last_look.jpg)
+
 
 
 
