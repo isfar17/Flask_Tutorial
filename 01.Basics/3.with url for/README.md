@@ -97,4 +97,4 @@ indicates that it will take us to ``new`` named function. But we know that the f
 basic now is cleared. 
 
 Now if we run the app, we will see the picture like down below:
-![image](https://github.com/isfar17/Flask_Tutorial/blob/master/1.Basics/3.with%20url%20for/images/url.jpg)
+![image](https://github.com/isfar17/Flask_Tutorial/blob/master/01.Basics/3.with%20url%20for/images/url.jpg)
