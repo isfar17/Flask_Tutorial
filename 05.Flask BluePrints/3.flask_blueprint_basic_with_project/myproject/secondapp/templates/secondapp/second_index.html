@@ -7,9 +7,10 @@
 </head>
 <body>
     this is the index page
-     <a href="{{url_for('secondapp.connect')}}" target="_blank" rel="noopener noreferrer">Go to Connect</a>
+    <br>
+    <br>
 
-     <form action="{{url_for('secondapp.connect')}}" method="post">
+     <form action="{{url_for('secondapp.data_entry')}}" method="post">
 
         Name: <input type="text" name="name">
         <button type="submit">Submit</button>

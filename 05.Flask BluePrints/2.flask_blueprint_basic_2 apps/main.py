@@ -7,8 +7,8 @@ from secondapp.views import secondapp
 
 # now in the main app we have to imoprt the blueprint variables we set earlier
 # to register them into blurprint
-app.register_blueprint(firstapp)
-app.register_blueprint(secondapp)
+app.register_blueprint(firstapp,url_prefix="/")
+app.register_blueprint(secondapp,url_prefix="/second")
 
 
 if __name__=="__main__":
