@@ -7,12 +7,12 @@ from sqlalchemy import exc
 secondapp=Blueprint("secondapp",__name__,template_folder="templates/secondapp")
 
 
-@secondapp.route("/second",methods=["GET","POST"])
+@secondapp.route("/",methods=["GET","POST"])
 def index():
     return render_template("second_index.html")
 
 
-@secondapp.route("/second/data_entry",methods=["GET","POST"])
+@secondapp.route("/data_entry",methods=["GET","POST"])
 def data_entry():
     try:
         data=SecondClass(name=request.form.get("name"))
