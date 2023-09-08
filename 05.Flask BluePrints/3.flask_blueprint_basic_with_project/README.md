@@ -194,11 +194,86 @@ Let's go to our ``secondapp`` folder's ``templates/secondapp`` folder and in the
 
      </form>
 
-</body>
+</body>    
 </html>
 ```
 Here we wrote a form, the form takes name as it's input, the name of the attribute is also ``"name"`` because we know that we can access the ``form-data``
-by their ``name attribute``. And we also said that the method would be ``"post"``. That's it.
+by their ``name attribute``. When we submit the data it will go to a function of the ``secondapp`` named ``data_entry``. And we also said that the method would be ``"post"``. That's it.
 
 ### 4
+
+Let's go to our ``views.py`` file under ``secondapp`` and create our ``data_entry`` function and elaborate everything:
+```python
+from flask import Blueprint,redirect,render_template,url_for,request
+from myproject import db
+from myproject.model import SecondClass
+from sqlalchemy import exc
+
+
+@secondapp.route("/data_entry",methods=["GET","POST"])
+def data_entry():
+    try:
+        data=SecondClass(name=request.form.get("name"))
+        db.session.add(data)
+        db.session.commit()
+        return "You have successfully inserted data !"
+    
+    except exc.SQLAlchemyError as e:
+        print(type(e))
+        db.session.rollback()
+        return redirect(url_for("secondapp.index"))
+```
+Firstly, while working with sending and recieving data, we should specify which ``methods`` to use or to allow while passing data. So we specify them.
+Secondly  we will try to recieve data and save it in the database.
+```python
+from myproject import db
+from myproject.model import SecondClass
+from sqlalchemy import exc
+```
+We have defined our db or database variable in our project `__init__.py` file. So we imoprt it. Next we wrote our ``SecondClass`` model in ``model.py``
+file. We import it also. Next, we import ``exc`` from ``sqlalchemy``. Here ``exc`` is exception. We can access different SQLAlchemy errors with this.
+We need this later on. Next we write:
+```python
+data=SecondClass(name=request.form.get("name"))
+db.session.add(data)
+db.session.commit()
+return "You have successfully inserted data !"
+```
+We make an object of ``SecondClass`` and we get our form-data from ``request.form.get("name")``. We take it and save the data in ``name`` attribute.
+Then we add it and commit our data. __BUT__ There is a catch. THat is, while defining our ``name`` column in ``SecondClass``, if we go back, and see
+that we added ``nullable=False`` attribute. What does this mean? This means the data we are trying to save can't be nullable. But if we try to
+save it, it will return ``IntegrityError``. So to deal with this we use ``try`` block. If data saving does not fail, we will show the user a message.
+But if the user fails, then we must take some action. So we say:
+```python
+db.session.rollback()
+return redirect(url_for("secondapp.index"))
+```
+Means we rollback every operation we tried to do or undo everything and send the user to ``index`` again or in the page where the form is. So we use
+``except`` block. Now look at the ``exc.SQLAlchemyError as e`` part. What does this mean?
+
+Here we want to see which type of error is occuring. Since we said that the ``exc`` contains the errors of ``SQLAlchemy``, we can print it. We could
+just say ``except``, but for better understanding, we imported the ``exc`` and printed out what error occured. Save it. Save everything and run our app.
+
+Now if we go to ``/second``, we see this:
+
+![second_index](https://github.com/isfar17/Flask_Tutorial/blob/master/05.Flask%20BluePrints/3.flask_blueprint_basic_with_project/image/second%20index.jpg)
+
+Now if we enter anything and press submit, we see this message:
+
+![after](https://github.com/isfar17/Flask_Tutorial/blob/master/05.Flask%20BluePrints/3.flask_blueprint_basic_with_project/image/after_inserting.jpg)
+
+And if we just press submit without entering data, we will see this message in our terminal:
+
+```
+<class 'sqlalchemy.exc.IntegrityError'>
+127.0.0.1 - - [08/Sep/2023 11:50:58] "GET /second/data_entry HTTP/1.1" 302 -
+```
+It says that there is an Integrity Error, or we tried to break the rule of the column where we tried to put data. That is it.
+
+Lastly, with VS Code database viewer extension, if we open our database, we see this:
+
+![database](https://github.com/isfar17/Flask_Tutorial/blob/master/05.Flask%20BluePrints/3.flask_blueprint_basic_with_project/image/database_view.jpg)
+
+We are good to go.
+
 
