@@ -94,6 +94,22 @@ format. But we also want to check if the password matches because it is now in c
 and make some users manually because we are not going to make any registration form right now. We will have users data included and we will simple use 
 those info to login and check if works or not.
 
+---
+Here we are not building any registraion site or form. So we will have to manually input user credintials by ourselves from command line. Then we will
+use that to test our data. So let's save and create our user:
+
+```
+E:\Flask\Flask_Tutorial\07.Flsak _ Login\2.Flask_login_2(w registration)>flask shell
+# >>> from main import *
+# >>> db.create_all()    
+# >>> user1=User(name="wewewe",password="wewewe")
+# >>> db.session.add(user1)
+# >>> db.session.commit()
+# >>> User.query.all()
+# [1 -> wewewe]
+
+```
+***
 Let's go down and make some restricted page first where the user, without loggin in cannot access them. But if he logs in, he can. Then lastly we will 
 setup our ``login`` function and ``logout`` function.
 
