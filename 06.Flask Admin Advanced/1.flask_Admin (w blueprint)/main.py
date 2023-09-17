@@ -1,5 +1,4 @@
 from flask import Flask
-from firstapp.views import firstapp
 from flask_admin import Admin
 '''if we know about blueprints, we know that we create separate apps and then we use them with blueprint variable
 declared within their folders python file. then we register them into the project __init__ file or main.py file() in
@@ -12,8 +11,8 @@ admin.init_app(app)
 
 
 #importing the blurprint variable from the app and then registering
+from firstapp.views import firstapp
 app.register_blueprint(firstapp)
-
 
 
 if __name__=="__main__":

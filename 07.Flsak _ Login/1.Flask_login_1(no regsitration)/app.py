@@ -1,13 +1,9 @@
-from flask import Flask,render_template,redirect,url_for,request,abort
-
-
+from flask import Flask,render_template,redirect,url_for,request
 from flask_sqlalchemy import SQLAlchemy
 #This Module is required to use them to work with login
 from flask_login import LoginManager,UserMixin,login_user,logout_user,login_required
-
 #this module encrypts  password which we will store in our class later.
 from werkzeug.security import check_password_hash,generate_password_hash
-from django.utils.http import url_has_allowed_host_and_scheme
 app=Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///database.sqlite3"
@@ -25,7 +21,7 @@ login_manager.init_app(app)
 #: The name of the view to redirect to when the user needs to log in.
 #: (This can be an absolute URL as well, if your authentication
 #: machinery is external to your application.)
-login_manager.login_view ='login_page'    # type: ignore
+login_manager.login_view ='login_page' # type: ignore
 
 
 #-----------------------------------------------------
@@ -60,68 +56,68 @@ class User(db.Model,UserMixin):
 def load_user(user_id):
     return User.query.get(user_id)
 #-----------------------------------------------
-#
-
-@app.route('/login_function',methods=['GET','POST'])
-def login_function(): 
-    name=request.form.get("name")
-    password=request.form.get("password")
-    
-    user=User.query.filter_by(name=name).first()
-    
-    if user is None:
-    
-        return redirect(url_for("login_page"))
-    
-    if user.check_password(password) is False:
-        return redirect(url_for("login_page"))
-    
-    login_user(user)
-    #the next arguement is very neccessary
-    #next stores the next url the user wants to go. it either can be none or a valid url
-    #if its none, then view will take it to regular page, or else if its valid, then
-    #function will try to redirect to the next url it is stored in it.
-    next = request.args.get('next')
-    if next:
-        if next[0]=="/":
-            return redirect(url_for(next))
+#this is the login route.login_view is set to login_page too.so the app will route the user here while login.
+@app.route("/login",methods=["GET","POST"])
+def login_page():
+    if request.method == 'POST':
+        name=request.form.get("name")
+        password=request.form.get("password")
         
-    # # # url_has_allowed_host_and_scheme should check if the url is safe
-    # # # for redirects, meaning it matches the request host.
-    # # # See Django's url_has_allowed_host_and_scheme for an example.
-    # if not url_has_allowed_host_and_scheme(next, request.host):
-    #      return abort(400)
+        user=User.query.filter_by(name=name).first()
 
-    # # return flask.redirect(next or flask.url_for('index'))
-    return redirect(url_for("view"))
+        if user is None:
+            return redirect(url_for("login_page"))
+        
+        
+        if user.check_password(password) is False:
+            return redirect(url_for("login_page"))
+        
+        login_user(user)
+        print("user logged in")
 
-#logs out user. all access to restricted pages gets disabled
+        next = request.args.get('next')
+        print(next)
+        if next and next[0]=="/":
+            return redirect(next)
+    
+        else:
+            '''
+            return flask.redirect(next or url_for('index'))
+            '''   
+            print("no next found")
+            return redirect(url_for("view"))
+    #first time the method will be get, as no form is being sent, so it will show the template down below. later it will
+    #work fine    
+    return render_template("login_page.html")
+
+
 @app.route("/logout")
 @login_required
 def logout():
     logout_user()
     return redirect(url_for("index"))
 
-#--------------------------------------------------
+#-----------------------restricted pages---------------------------
 #routing normally to pages
 
-@app.route('/2',methods=['GET',"POST"])
+@app.route('/restricted',methods=['GET','POST'])
 @login_required
-def index2():
+def restricted():
     return "hello world! This is a restriced area. Go to /login to log into the website "
+
+@app.route('/another',methods=['GET','POST'])
+@login_required
+def another_func():
+    return "hello User! This is a another restrict area. Go to /login to log into the website "
 
 @app.route('/',methods=['GET',"POST"])
 def index():
-    return "hello world! Go to /login to log into the website "
+    return "hello world! Go to '/login' to log into the website "
 
-#this is the login route.login_view is set to login_page too.so the app will route the user here while login.
-@app.route("/login")
-def login_page():
-    return render_template("login_page.html")
 
 
 #a restricted page cant be seen without login
-@app.route("/view")
+@app.route("/view",methods=['GET',"POST"])
 @login_required
 def view():
     return render_template("view.html")
@@ -131,10 +127,11 @@ if __name__=='__main__':
     app.run(debug=True)
     
 '''
-127.0.0.1 - - [19/Aug/2023 12:32:17] "GET / HTTP/1.1" 200 -
-127.0.0.1 - - [19/Aug/2023 12:32:21] "GET /view HTTP/1.1" 302 -
-127.0.0.1 - - [19/Aug/2023 12:32:21] "GET /login?next=/view HTTP/1.1" 200 -
-127.0.0.1 - - [19/Aug/2023 12:32:42] "POST /login_function HTTP/1.1" 302 -
-127.0.0.1 - - [19/Aug/2023 12:32:42] "GET /view HTTP/1.1" 200 -
-127.0.0.1 - - [19/Aug/2023 12:32:45] "GET /2 HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2023 13:35:40] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [17/Sep/2023 13:35:44] "GET /restricted HTTP/1.1" 302 -
+127.0.0.1 - - [17/Sep/2023 13:35:44] "GET /login?next=/restricted HTTP/1.1" 200 -
+user logged in
+/restricted
+127.0.0.1 - - [17/Sep/2023 13:35:47] "POST /login?next=/restricted HTTP/1.1" 302 -
+127.0.0.1 - - [17/Sep/2023 13:35:47] "GET /restricted HTTP/1.1" 200 -
 '''
