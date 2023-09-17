@@ -3,16 +3,16 @@
 {% block title  %}Registration{% endblock title  %}
 
 {% block body %}
-    This is the body
-    hi this is Registration route
-    <br>
     <div class="container">
+        This is the body <br>
+        Please fill up your registraion form <br>
+        <br>
     <!-- the url_for()  recognises the function to be called and gets to it. it will return whatever inside it is -->
         <form action="{{url_for('registration_process')}}" method="POST"> 
             <!--the url for this file is set to registration_process where data will be processed to make a user-->
-            <input type="text" name="name" >
-            <input type="password" name="password" >
-            <button type="submit">Submit</button>
+            Name : <input type="text" name="name" > <br> <br>
+            Password : <input type="password" name="password" > <br> <br>
+            Submit : <button type="submit">Submit</button>
 
         </form>
     </div>

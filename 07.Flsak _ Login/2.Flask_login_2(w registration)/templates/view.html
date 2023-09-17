@@ -4,7 +4,8 @@
 <div class="container">
     Hello User! <br>
     {% if current_user.is_authenticated %}
-    <a href="{{url_for('logout')}}" target="_blank" rel="noopener noreferrer">Logout</a>
+    <b>YOU CAN see this line because it seems you are logged in!!</b><br>
+    <a href="{{url_for('logout')}}" >Logout</a>
         
     {% endif %}
 </div>

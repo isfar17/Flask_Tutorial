@@ -38,17 +38,13 @@ class User(db.Model,UserMixin):
 def load_user(user_id):
     return User.query.get(user_id)
 
-#tutorial for login 
-@app.route('/',methods=['GET',"POST"])
-def index():
-
-    return 'hello world home page go to /registration for registration'
 
 #Shows the registraion template
 @app.route("/registration",methods=["GET","POST"])
 def registration():
     return render_template("registration.html")
 
+#work with registration
 @app.route("/registration_process",methods=["GET","POST"])
 def registration_process():
     name=request.form.get("name")
@@ -69,30 +65,36 @@ def registration_process():
     return redirect(url_for("login"))
 
 
-@app.route('/login_process',methods=['GET','POST'])
-def login_process(): 
-    name=request.form.get("name")
-    password=request.form.get("password")
-    
-    user=User.query.filter_by(name=name).first()
-    
-    if user is None:
-        return redirect(url_for("login"))
-    
-    if user.check_password(password) is False:
-        return redirect(url_for("login"))
-    
-    login_user(user)
-    return render_template("view.html")
-
-@app.route("/login")
+@app.route("/login",methods=['GET','POST'])
 def login():
-    return render_template("login.html")
+    if request.method=="POST":
+        name=request.form.get("name")
+        password=request.form.get("password")
+        
+        user=User.query.filter_by(name=name).first()
+        
+        if user is None:
+            return redirect(url_for("login"))
+        
+        if user.check_password(password) is False:
+            return redirect(url_for("login"))
+        
+        login_user(user)
+        print("user logged in")
 
-@app.route("/view")
-@login_required
-def view():
-    return render_template("view.html")
+        next = request.args.get('next')
+        print(next)
+        if next and next[0]=="/":
+            return redirect(next)
+    
+        else:
+            '''
+            return flask.redirect(next or url_for('index'))
+            '''   
+            print("no next found")
+            return redirect(url_for("view"))
+
+    return render_template("login.html")
 
 @app.route("/logout")
 @login_required
@@ -100,10 +102,22 @@ def logout():
     logout_user()
     return redirect(url_for("index"))
 
+#------------------Basic Page and restricted page----------
+#tutorial for login 
+@app.route('/',methods=['GET',"POST"])
+def index():
+    return 'hello world home page go to /registration for registration and in /login for login'
+
+@app.route("/view")
+def view():
+    return render_template("view.html")
+
 @app.route("/adminpage")
 @login_required
 def secret():
     return "This is a restriced page ! if you are an user you can see it. go to /view to logout or /logout to logout"
+
+
 
 if __name__=='__main__':
     app.run(debug=True)
