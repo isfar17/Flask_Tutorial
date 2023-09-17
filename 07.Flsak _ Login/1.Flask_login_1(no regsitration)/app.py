@@ -125,13 +125,3 @@ def view():
 #------------------------------------------------
 if __name__=='__main__':
     app.run(debug=True)
-    
-'''
-127.0.0.1 - - [17/Sep/2023 13:35:40] "GET / HTTP/1.1" 200 -
-127.0.0.1 - - [17/Sep/2023 13:35:44] "GET /restricted HTTP/1.1" 302 -
-127.0.0.1 - - [17/Sep/2023 13:35:44] "GET /login?next=/restricted HTTP/1.1" 200 -
-user logged in
-/restricted
-127.0.0.1 - - [17/Sep/2023 13:35:47] "POST /login?next=/restricted HTTP/1.1" 302 -
-127.0.0.1 - - [17/Sep/2023 13:35:47] "GET /restricted HTTP/1.1" 200 -
-'''
