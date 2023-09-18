@@ -47,6 +47,7 @@ def registration():
 #work with registration
 @app.route("/registration_process",methods=["GET","POST"])
 def registration_process():
+
     name=request.form.get("name")
     password=request.form.get("password")
     user=User.query.filter_by(name=name).first()
@@ -63,6 +64,7 @@ def registration_process():
             db.session.rollback()
             return redirect(url_for('registration'))
     return redirect(url_for("login"))
+
 
 
 @app.route("/login",methods=['GET','POST'])
