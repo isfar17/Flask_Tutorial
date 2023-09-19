@@ -27,7 +27,12 @@ if __name__=='__main__':
 ```
 if we see we have used two functions in return. That is because redirect function takes url_for() functions redirection and redirects to that path/function. It can be
 write in many ways. But for now we will create our ``index.html`` file and see if we can redirect it. We will see that the function is running.
+### View vs URL
+***
+Later on, we will use ``views`` and ``url`` terms so many times. Let's clear what they are. ``views`` are simply **WHAT** to show in our website. And ``url`` means
+__WHERE__ to show those contents. These two terms are related to each other.
 
+---
 ### Jinja Templating
 
 This is one of the most important part of learning flask. We really want to put our python codes result into our html file. But its not possible in normal way.
