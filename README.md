@@ -4,8 +4,8 @@ written for me. The first portion of learning flask can be easily found from the
 
 1. Basics
     * [Minimal flask application](https://flask.palletsprojects.com/en/2.3.x/quickstart/#a-minimal-application)
-    * [Templates with jinja](https://github.com/isfar17/Flask_Tutorial/tree/master/01.Basics/2.Template%20w%20Jinja)
-    * [Working with url_for() function](https://github.com/isfar17/Flask_Tutorial/tree/master/01.Basics/3.with%20url%20for)
+    * [Using Templates in flask](https://github.com/isfar17/Flask_Tutorial/tree/master/01.Basics/2.Template%20w%20Jinja)
+    * [Working with url_for() function and jinja templating](https://github.com/isfar17/Flask_Tutorial/tree/master/01.Basics/3.with%20url%20for)
     * [Working with static folder](https://github.com/isfar17/Flask_Tutorial/tree/master/01.Basics/4.Statics)
     
 2. Flask SQLAlchemy
